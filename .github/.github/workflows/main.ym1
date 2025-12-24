@@ -1,0 +1,16 @@
+name: Final Build
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build APK
+        uses: ArtemSerebrenninkov/buildozer-action@v1
+        with:
+          command: debug
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: VoicePro-Final-Release
+          path: bin/*.apk
